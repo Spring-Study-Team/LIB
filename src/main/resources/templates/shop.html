@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Product List</h1>
+        <div class="row">
+            <div class="col-md-4" th:each="product : ${products}">
+                <div class="card mb-4 shadow-sm">
+                    <img th:src="@{${product.url}}" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${product.name}">Product Name</h5>
+                        <p class="card-text" th:text="${product.description}">Product description here...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn-view btn btn-sm btn-outline-secondary" th:data="${product.id}">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
+                            </div>
+                            <small class="text-muted" th:text="${product.price}">Price</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+<script>
+    $(document).ready(function(){
+
+    });
+
+    $('.btn-view').on('click', function(e){
+        location.href = "/shop/" + $(this).attr('data');
+    });
+</script>
+
+</html>
